@@ -1,0 +1,23 @@
+# IDE directories
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# logs
+*.log
+
+# temporary files
+*~
+*.swp
+
+# node modules / dependencies (if any)
+node_modules/
+
+# other common directories
+bin/
+build/
+
+
