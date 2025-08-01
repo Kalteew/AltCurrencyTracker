@@ -1,0 +1,7 @@
+## Title: AltCurrencyTracker
+## Version: 1.0
+## Author: Yaya
+## Interface: 100107
+## SavedVariables: AltCurrencyTrackerDB
+
+AltCurrencyTracker.lua
