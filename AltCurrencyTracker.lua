@@ -35,7 +35,7 @@ local function AddCharCurrencyLinesToTooltip(GameTooltip, id)
 
     if #sorted > 0 then
         GameTooltip:AddLine(" ")
-        GameTooltip:AddLine("|cffffcc00Autres personnages :|r")
+        GameTooltip:AddLine("|cffffcc00Other characters:|r")
         for _, char in ipairs(sorted) do
             GameTooltip:AddDoubleLine(char.name, char.amount, 1, 1, 1, 1, 1, 1)
         end
