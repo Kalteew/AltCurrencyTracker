@@ -18,7 +18,7 @@ Simply hover over a currency in your currency panel. The tooltip will list the a
 No slash commands or additional configuration are required.
 
 ## Saved Variables
-The addon stores its data in the `MyCurrenciesDB` saved variable. If you wish to reset the stored data, you can delete this entry from your `WTF` folder while the game is closed.
+The addon stores its data in the `AltCurrencyTrackerDB` saved variable. If you wish to reset the stored data, you can delete this entry from your `WTF` folder while the game is closed.
 
 ## License
 This project is released under the MIT License.
