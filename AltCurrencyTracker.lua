@@ -61,8 +61,8 @@ f:RegisterEvent("PLAYER_ENTERING_WORLD")
 
 f:SetScript("OnEvent", function(self, event, arg1)
     if event == "ADDON_LOADED" and arg1 == addonName then
-        MyCurrenciesDB = MyCurrenciesDB or {}
-        db = MyCurrenciesDB
+        AltCurrencyTrackerDB = AltCurrencyTrackerDB or {}
+        db = AltCurrencyTrackerDB
     elseif event == "PLAYER_ENTERING_WORLD" or event == "CURRENCY_DISPLAY_UPDATE" then
         UpdateCurrencies()
     end
