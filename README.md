@@ -1,24 +1,55 @@
 # AltCurrencyTracker
 
-AltCurrencyTracker is a lightweight World of Warcraft addon designed to keep track of the currencies collected by each of your characters. It records currency amounts on every login or whenever your currency totals change and then displays this information directly in currency tooltips. This makes it easy to see how much of a given currency your alternate characters have without logging over to them.
+**AltCurrencyTracker** is a lightweight addon that helps you track how much currency your other characters have—directly in the tooltip.
+
+---
 
 ## Features
-- Stores the quantity of each tracked currency for all characters on the account.
-- Adds a section to currency tooltips showing the amounts held by your other characters.
-- Updates automatically when you earn or spend currency.
 
-## Installation
-1. Download or clone this repository.
-2. Copy the entire `AltCurrencyTracker` folder into your `World of Warcraft/_retail_/Interface/AddOns` directory.
-3. Launch the game and make sure the addon is enabled at the character selection screen.
+- Shows currency amounts for all your characters in currency tooltips
+- Adds an "Other characters" section listing totals per character, sorted alphabetically by *Realm – Name*
+- Automatically updates on login or when your currency totals change
+- No setup or configuration needed
+- Low memory usage with a single account-wide saved variable
+
+---
 
 ## Usage
-Simply hover over a currency in your currency panel. The tooltip will list the amount of that currency owned by your other characters.
 
-No slash commands or additional configuration are required.
+Hover over any currency in your character’s currency tab.  
+The tooltip will display how much of that currency your other characters have.
 
-## Saved Variables
-The addon stores its data in the `AltCurrencyTrackerDB` saved variable. If you wish to reset the stored data, you can delete this entry from your `WTF` folder while the game is closed.
+Log in with each character once to populate the database.
+
+---
+
+## Data Storage
+
+- Uses a per-account `AltCurrencyTrackerDB` saved variable
+- Stores current currency amounts by item ID for each character
+- Updates automatically during normal gameplay
+- To reset, delete `AltCurrencyTrackerDB` from your `WTF` folder while the game is closed
+
+---
+
+## Limitations
+
+- Only tracks currencies shown in the currency tab
+- Characters must log in at least once to be recorded
+
+---
+
+## Support
+
+Found a bug or have a suggestion?  
+Open an issue here: [GitHub - Kalteew/AltCurrencyTracker](https://github.com/Kalteew/AltCurrencyTracker)
+
+---
 
 ## License
-This project is released under the MIT License.
+
+This addon is open-source under the MIT License.
+
+---
+
+Thank you for using AltCurrencyTracker!
