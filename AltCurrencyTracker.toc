@@ -3,5 +3,6 @@
 ## Author: Yaya
 ## Interface: 100107
 ## SavedVariables: AltCurrencyTrackerDB
+## X-Curse-Project-ID: 1318926
 
 AltCurrencyTracker.lua
