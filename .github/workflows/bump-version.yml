@@ -18,10 +18,13 @@ on:
 
 jobs:
   bump:
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Fetch tags
         run: git fetch --tags
@@ -57,11 +60,3 @@ jobs:
           git config user.email "${{ github.actor }}@users.noreply.github.com"
           git tag "$NEW_TAG"
           git push origin "$NEW_TAG"
-
-      - name: Create GitHub release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ steps.bump.outputs.new_tag }}
-          release_name: ${{ steps.bump.outputs.new_tag }}
