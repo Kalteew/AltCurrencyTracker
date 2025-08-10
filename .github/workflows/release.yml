@@ -1,9 +1,10 @@
-name: Bump Version
+---
+name: Release
 
 permissions:
   contents: write
 
-on:
+'on':
   workflow_dispatch:
     inputs:
       release_type:
@@ -17,11 +18,14 @@ on:
           - major
 
 jobs:
-  bump:
+  release:
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Fetch tags
         run: git fetch --tags
@@ -58,10 +62,18 @@ jobs:
           git tag "$NEW_TAG"
           git push origin "$NEW_TAG"
 
-      - name: Create GitHub release
-        uses: actions/create-release@v1
+      - name: Package and upload
+        uses: BigWigsMods/packager@v2
+        with:
+          args: -p 1318926
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CF_API_KEY: ${{ secrets.CF_API_KEY }}
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.bump.outputs.new_tag }}
-          release_name: ${{ steps.bump.outputs.new_tag }}
+          name: ${{ steps.bump.outputs.new_tag }}
+          files: .release/*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
