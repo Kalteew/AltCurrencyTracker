@@ -1,6 +1,23 @@
 local addonName = ...
 local db
 
+local locale = GetLocale()
+local L = {
+    enUS = "Other characters:",
+    enGB = "Other characters:",
+    frFR = "Autres personnages :",
+    deDE = "Andere Charaktere:",
+    esES = "Otros personajes:",
+    esMX = "Otros personajes:",
+    itIT = "Altri personaggi:",
+    ptBR = "Outros personagens:",
+    ruRU = "Другие персонажи:",
+    koKR = "다른 캐릭터:",
+    zhCN = "其他角色：",
+    zhTW = "其他角色：",
+}
+local OTHER_CHARS_TEXT = L[locale] or L.enUS
+
 local function GetCharKey()
     local name, realm = UnitFullName("player")
     if not name or not realm then return nil end
@@ -35,7 +52,7 @@ local function AddCharCurrencyLinesToTooltip(GameTooltip, id)
 
     if #sorted > 0 then
         GameTooltip:AddLine(" ")
-        GameTooltip:AddLine("|cffffcc00Other characters:|r")
+        GameTooltip:AddLine("|cffffcc00" .. OTHER_CHARS_TEXT .. "|r")
         for _, char in ipairs(sorted) do
             GameTooltip:AddDoubleLine(char.name, char.amount, 1, 1, 1, 1, 1, 1)
         end

@@ -11,6 +11,7 @@
 - Automatically updates on login or when your currency totals change
 - No setup or configuration needed
 - Low memory usage with a single account-wide saved variable
+- Includes localization for English, French, German, Spanish (EU & Latin America), Italian, Portuguese (Brazil), Russian, Korean, and Chinese (Simplified & Traditional)
 
 ---
 
