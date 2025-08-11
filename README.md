@@ -8,6 +8,7 @@
 
 - Shows currency amounts for all your characters in currency tooltips
 - Adds an "Other characters" section listing totals per character, sorted alphabetically by *Realm – Name*
+- Displays an overall total across your characters for the hovered currency
 - Automatically updates on login or when your currency totals change
 - No setup or configuration needed
 - Low memory usage with a single account-wide saved variable

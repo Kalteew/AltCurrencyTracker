@@ -3,20 +3,21 @@ local db
 
 local locale = GetLocale()
 local L = {
-    enUS = "Other characters:",
-    enGB = "Other characters:",
-    frFR = "Autres personnages :",
-    deDE = "Andere Charaktere:",
-    esES = "Otros personajes:",
-    esMX = "Otros personajes:",
-    itIT = "Altri personaggi:",
-    ptBR = "Outros personagens:",
-    ruRU = "Другие персонажи:",
-    koKR = "다른 캐릭터:",
-    zhCN = "其他角色：",
-    zhTW = "其他角色：",
+    enUS = { other = "Other characters:", total = "Total:" },
+    enGB = { other = "Other characters:", total = "Total:" },
+    frFR = { other = "Autres personnages :", total = "Total :" },
+    deDE = { other = "Andere Charaktere:", total = "Gesamt:" },
+    esES = { other = "Otros personajes:", total = "Total:" },
+    esMX = { other = "Otros personajes:", total = "Total:" },
+    itIT = { other = "Altri personaggi:", total = "Totale:" },
+    ptBR = { other = "Outros personagens:", total = "Total:" },
+    ruRU = { other = "Другие персонажи:", total = "Всего:" },
+    koKR = { other = "다른 캐릭터:", total = "총합:" },
+    zhCN = { other = "其他角色：", total = "总计：" },
+    zhTW = { other = "其他角色：", total = "總計：" },
 }
-local OTHER_CHARS_TEXT = L[locale] or L.enUS
+local OTHER_CHARS_TEXT = (L[locale] and L[locale].other) or L.enUS.other
+local TOTAL_TEXT = (L[locale] and L[locale].total) or L.enUS.total
 
 local function GetCharKey()
     local name, realm = UnitFullName("player")
@@ -39,12 +40,14 @@ local function UpdateCurrencies()
     end
 end
 
-local function AddCharCurrencyLinesToTooltip(GameTooltip, id)
+local function AddCharCurrencyLinesToTooltip(GameTooltip, id, currentAmount)
     local currentCharKey = GetCharKey()
     local sorted = {}
+    local total = currentAmount or 0
     for charKey, data in pairs(db) do
         if charKey ~= currentCharKey and data[id] then
             table.insert(sorted, { name = charKey, amount = data[id] })
+            total = total + data[id]
         end
     end
 
@@ -56,6 +59,8 @@ local function AddCharCurrencyLinesToTooltip(GameTooltip, id)
         for _, char in ipairs(sorted) do
             GameTooltip:AddDoubleLine(char.name, char.amount, 1, 1, 1, 1, 1, 1)
         end
+        GameTooltip:AddLine(" ")
+        GameTooltip:AddDoubleLine(TOTAL_TEXT, total, 1, 1, 1, 1, 1, 1)
     end
 end
 
@@ -64,7 +69,7 @@ hooksecurefunc(GameTooltip, "SetCurrencyToken", function(self, index)
 
     local name, isHeader, _, _, _, count, _, _, _, _, _, itemID = GetCurrencyListInfo(index)
     if itemID and not isHeader then
-        AddCharCurrencyLinesToTooltip(self, itemID)
+        AddCharCurrencyLinesToTooltip(self, itemID, count)
         self:Show()
     end
 end)
