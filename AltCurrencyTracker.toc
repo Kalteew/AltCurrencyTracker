@@ -6,3 +6,5 @@
 ## X-Curse-Project-ID: 1318926
 
 AltCurrencyTracker.lua
+
+Metiers.lua
